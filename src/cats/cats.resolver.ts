@@ -1,6 +1,8 @@
 import { ParseIntPipe, UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver, Subscription } from "@nestjs/graphql";
 import { PubSub } from "graphql-subscriptions";
+// import { RolesGuard } from "src/common/roles.guard";
+import { RolesService } from "src/roles/roles.service";
 import { Cat } from "../graphql.schema";
 import { CatsGuard } from "./cats.guard";
 import { CatsService } from "./cats.service";
@@ -10,11 +12,17 @@ const pubSub = new PubSub();
 
 @Resolver("Cat")
 export class CatsResolver {
-  constructor(private readonly catsService: CatsService) {}
+  constructor(
+    private readonly catsService: CatsService,
+    private readonly rolesService: RolesService
+  ) {}
 
   @Query("cats")
   @UseGuards(CatsGuard)
+  // @UseGuards(RolesGuard)
   async getCats(): Promise<Cat[]> {
+    const message = this.rolesService.helloWorld();
+    console.log("message:", message);
     return this.catsService.findAll();
   }
 
