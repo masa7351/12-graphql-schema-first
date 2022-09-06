@@ -14,8 +14,8 @@ import responseCachePlugin from 'apollo-server-plugin-response-cache'
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       typePaths: ["./**/*.graphql"],
-      transformSchema: (schema) => upperDirectiveTransformer(schema, "upper"),
-      installSubscriptionHandlers: true,
+      // transformSchema: (schema) => upperDirectiveTransformer(schema, "upper"),
+      // installSubscriptionHandlers: true,
       plugins: [
         ApolloServerPluginCacheControl({
           defaultMaxAge: 50,
