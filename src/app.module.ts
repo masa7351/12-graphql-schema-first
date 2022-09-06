@@ -4,6 +4,8 @@ import { GraphQLModule } from "@nestjs/graphql";
 import { CatsModule } from "./cats/cats.module";
 import { upperDirectiveTransformer } from "./common/directives/upper-case.directive";
 import { RolesModule } from "./roles/roles.module";
+import {ApolloServerPluginCacheControl} from 'apollo-server-core'
+import responseCachePlugin from 'apollo-server-plugin-response-cache'
 
 @Module({
   imports: [
@@ -14,6 +16,13 @@ import { RolesModule } from "./roles/roles.module";
       typePaths: ["./**/*.graphql"],
       transformSchema: (schema) => upperDirectiveTransformer(schema, "upper"),
       installSubscriptionHandlers: true,
+      plugins: [
+        ApolloServerPluginCacheControl({
+          defaultMaxAge: 50,
+          calculateHttpHeaders: false,
+        }),
+        responseCachePlugin(),
+      ],
     }),
   ],
 })
