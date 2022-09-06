@@ -20,7 +20,9 @@
     "generate-typings": "ts-node generate-typings"
   },
   "dependencies": {
+    "@apollo/utils.keyvadapter": "^1.1.2",
     "@graphql-tools/utils": "8.6.3",
+    "@keyv/redis": "^2.5.1",
     "@nestjs/apollo": "10.0.0",
     "@nestjs/common": "8.2.3",
     "@nestjs/core": "8.2.3",
@@ -33,6 +35,8 @@
     "class-validator": "0.13.2",
     "graphql": "15.7.2",
     "graphql-subscriptions": "2.0.0",
+    "ioredis": "^5.2.3",
+    "keyv": "^4.5.0",
     "reflect-metadata": "0.1.13",
     "rimraf": "3.0.2",
     "rxjs": "7.4.0"
